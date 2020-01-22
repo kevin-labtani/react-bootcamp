@@ -1,4 +1,4 @@
-let foods = [
+const foods = [
   "🍇",
   "🍈",
   "🍉",

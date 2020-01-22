@@ -4,7 +4,7 @@ function choice(items) {
 
 function remove(items, item) {
   items = items.filter(el => el !== item);
-  return items.length;
+  return items;
 }
 
 export { choice, remove };
