@@ -12,6 +12,7 @@ export default class ScoreKeeper extends Component {
     this.tripleKill = this.tripleKill.bind(this);
   }
 
+  // avoid doing it this way
   singleKill() {
     this.setState({ score: this.state.score + 1 });
   }
@@ -24,17 +25,28 @@ export default class ScoreKeeper extends Component {
   //   this.setState({ score: this.state.score + 1 });
   // }
 
-  // fixed version
+  // // fixed version
+  // tripleKill() {
+  //   this.setState(st => {
+  //     return { score: st.score + 1 };
+  //   });
+  //   this.setState(st => {
+  //     return { score: st.score + 1 };
+  //   });
+  //   this.setState(st => {
+  //     return { score: st.score + 1 };
+  //   });
+  // }
+
+  // refactor
+  incrementScore(oldState) {
+    return { score: oldState.score + 1 };
+  }
+
   tripleKill() {
-    this.setState(st => {
-      return { score: st.score + 1 };
-    });
-    this.setState(st => {
-      return { score: st.score + 1 };
-    });
-    this.setState(st => {
-      return { score: st.score + 1 };
-    });
+    this.setState(this.incrementScore);
+    this.setState(this.incrementScore);
+    this.setState(this.incrementScore);
   }
 
   render() {
