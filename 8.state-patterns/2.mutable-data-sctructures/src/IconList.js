@@ -25,13 +25,21 @@ class IconList extends Component {
     this.addIcon = this.addIcon.bind(this);
   }
 
-  // works bit wrong way to mutate state
+  // works but wrong way to mutate Mutable Data Structures
+  // based on state
+  // addIcon() {
+  //   let idx = Math.floor(Math.random() * this.props.options.length);
+  //   let newIcon = this.props.options[idx];
+  //   let icons = this.state.icons;
+  //   icons.push(newIcon);
+  //   this.setState({ icons: icons });
+  // }
+
+  // correct way
   addIcon() {
     let idx = Math.floor(Math.random() * this.props.options.length);
     let newIcon = this.props.options[idx];
-    let icons = this.state.icons;
-    icons.push(newIcon);
-    this.setState({ icons: icons });
+    this.setState({ icons: [...this.state.icons, newIcon] });
   }
 
   render() {
