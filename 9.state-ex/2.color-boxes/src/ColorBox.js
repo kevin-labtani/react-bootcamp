@@ -27,7 +27,7 @@ export default class ColorBox extends Component {
       <div
         className="ColorBox"
         onClick={this.handleClick}
-        style={{ backgroundColor: `${this.state.color}` }}
+        style={{ backgroundColor: this.state.color }}
       ></div>
     );
   }
