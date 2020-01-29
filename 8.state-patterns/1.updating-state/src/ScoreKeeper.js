@@ -16,12 +16,25 @@ export default class ScoreKeeper extends Component {
     this.setState({ score: this.state.score + 1 });
   }
 
+  // tripleKill() {
+  //   // not working!!
+  //   // react only enact the last call, has to do with how react is combining the calls
+  //   this.setState({ score: this.state.score + 1 });
+  //   this.setState({ score: this.state.score + 1 });
+  //   this.setState({ score: this.state.score + 1 });
+  // }
+
+  // fixed version
   tripleKill() {
-    // not working!!
-    // react only enact the last call, has to do with how react is combining the calls
-    this.setState({ score: this.state.score + 1 });
-    this.setState({ score: this.state.score + 1 });
-    this.setState({ score: this.state.score + 1 });
+    this.setState(st => {
+      return { score: st.score + 1 };
+    });
+    this.setState(st => {
+      return { score: st.score + 1 };
+    });
+    this.setState(st => {
+      return { score: st.score + 1 };
+    });
   }
 
   render() {
