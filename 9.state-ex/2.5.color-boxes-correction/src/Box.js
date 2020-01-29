@@ -1,19 +1,14 @@
 import React, { Component } from "react";
-import "./ColorBox.css";
 import { choice } from "./helpers";
+import "./Box.css";
 
-export default class ColorBox extends Component {
+class Box extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      color: choice(this.props.colors)
-    };
-
+    this.state = { color: choice(this.props.colors) };
     this.handleClick = this.handleClick.bind(this);
   }
-
-  handleClick() {
+  pickColor() {
     let newColor;
     do {
       newColor = choice(this.props.colors);
@@ -21,14 +16,18 @@ export default class ColorBox extends Component {
 
     this.setState({ color: newColor });
   }
-
+  handleClick() {
+    this.pickColor();
+  }
   render() {
     return (
       <div
-        className="ColorBox"
+        className='Box'
+        style={{ backgroundColor: this.state.color }}
         onClick={this.handleClick}
-        style={{ backgroundColor: `${this.state.color}` }}
-      ></div>
+      />
     );
   }
 }
+
+export default Box;
