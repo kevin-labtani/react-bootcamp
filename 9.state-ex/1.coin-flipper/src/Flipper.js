@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Coin from "./Coin";
-import "./Flipper.css"
+import "./Flipper.css";
 
 export default class Flipper extends Component {
   constructor(props) {
@@ -18,20 +18,18 @@ export default class Flipper extends Component {
 
   roll() {
     let newFace = Math.random() < 0.5 ? "head" : "tail";
-    let newNrHead =
-      newFace === "head" ? this.state.nrHead + 1 : this.state.nrHead;
-    let newNrTail =
-      newFace === "tail" ? this.state.nrTail + 1 : this.state.nrTail;
 
-    this.setState(st => ({
-      nrFlip: st.nrFlip + 1,
-      face: newFace,
-      nrHead: newNrHead,
-      nrTail: newNrTail
-    }));
+    this.setState(st => {
+      return {
+        nrFlip: st.nrFlip + 1,
+        face: newFace,
+        nrHead: st.nrHead + (newFace === "head" ? 1 : 0),
+        nrTail: st.nrTail + (newFace === "tail" ? 1 : 0)
+      };
+    });
   }
 
-  handleClick() {
+  handleClick(e) {
     this.roll();
   }
 
