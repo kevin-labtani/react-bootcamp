@@ -1,0 +1,13 @@
+.Flipper button {
+  background-color: goldenrod;
+  font-size: 1.3rem;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.Flipper button:hover {
+  background-color: darkgoldenrod;
+}
