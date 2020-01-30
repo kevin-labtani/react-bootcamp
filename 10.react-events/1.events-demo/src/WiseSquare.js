@@ -1,3 +1,4 @@
+// MOUSE EVENT
 import React, { Component } from "react";
 import "./WiseSquare.css";
 
@@ -15,7 +16,7 @@ class WiseSquare extends Component {
 
   render() {
     return (
-      <div className='WiseSquare' onMouseEnter={this.dispenseWisdom}>
+      <div className="WiseSquare" onMouseEnter={this.dispenseWisdom}>
         😃
       </div>
     );
