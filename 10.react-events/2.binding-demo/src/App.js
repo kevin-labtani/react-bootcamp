@@ -2,12 +2,14 @@ import React from "react";
 import "./App.css";
 import WiseSquare from "./WiseSquare";
 import WiseSquareWithProps from "./WiseSquareWithProps";
-function App() {
+import WiseSquareWithPropsExp from "./WiseSquareWithPropsExp";
 
+function App() {
   return (
     <div className="App">
       <WiseSquare />
       <WiseSquareWithProps />
+      <WiseSquareWithPropsExp />
     </div>
   );
 }
