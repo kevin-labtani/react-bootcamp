@@ -12,39 +12,40 @@ export default class BoxList extends Component {
     };
 
     this.addBox = this.addBox.bind(this);
-    this.delBox = this.delBox.bind(this);
   }
 
   addBox(box) {
     // add id to new box
     let newBox = { ...box, id: uuid() };
-    this.setState(st => ({
-      boxes: [...st.boxes, newBox]
-    }));
+    this.setState({
+      boxes: [...this.state.boxes, newBox]
+    });
   }
 
   delBox(id) {
     this.setState({
-      boxes: [...this.state.boxes.filter(box => box.id !== id)]
+      boxes: this.state.boxes.filter(box => box.id !== id)
     });
   }
 
   render() {
+    const boxes = this.state.boxes.map(box => (
+      <Box
+        key={box.id}
+        id={box.id}
+        width={box.width}
+        height={box.height}
+        backgroundColor={box.backgroundColor}
+        // use an arrow function for variety's sake, can also create constructor in <Box />, bind, etc
+        delBox={() => this.delBox(box.id)}
+      />
+    ));
+
     return (
       <div>
         <h1>Box Maker</h1>
         <NewBoxForm addBox={this.addBox} />
-
-        {this.state.boxes.map(box => (
-          <Box
-            key={box.id}
-            id={box.id}
-            width={box.width}
-            height={box.height}
-            backgroundColor={box.backgroundColor}
-            delBox={this.delBox}
-          />
-        ))}
+        {boxes}
       </div>
     );
   }
