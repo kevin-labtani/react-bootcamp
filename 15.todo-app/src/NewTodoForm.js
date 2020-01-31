@@ -16,7 +16,7 @@ export default class NewTodoForm extends Component {
   handleSubmit(e) {
     // add id to new todo; add new todo, and then clear form
     e.preventDefault();
-    const newTodo = { ...this.state, id: uuid() };
+    const newTodo = { ...this.state, id: uuid(), completed: false };
     this.props.addTodo(newTodo);
     this.setState({
       task: ""
