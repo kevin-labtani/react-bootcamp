@@ -12,11 +12,26 @@ export default class TodoList extends Component {
 
     this.addTodo = this.addTodo.bind(this);
     this.delTodo = this.delTodo.bind(this);
+    this.updateTodo = this.updateTodo.bind(this);
   }
 
   addTodo(newTodo) {
     this.setState({
       todos: [...this.state.todos, newTodo]
+    });
+  }
+
+  updateTodo(id, updatedTask) {
+    // make a new array and replace the task if it's the todo we're looking for
+    const newTodos = this.state.todos.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, task: updatedTask };
+      } else {
+        return todo;
+      }
+    });
+    this.setState({
+      todos: newTodos
     });
   }
 
@@ -34,14 +49,15 @@ export default class TodoList extends Component {
         id={todo.id}
         task={todo.task}
         delTodo={this.delTodo}
+        updateTodo={this.updateTodo}
       />
     ));
 
     return (
       <div>
         <h1>Todo List</h1>
-        <ul>{todos}</ul>
         <NewTodoForm addTodo={this.addTodo} />
+        <ul>{todos}</ul>
       </div>
     );
   }
