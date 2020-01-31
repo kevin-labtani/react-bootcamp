@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import NewTodoForm from "./NewTodoForm";
-import uuid from "uuid/v4";
 import Todo from "./Todo";
 
 export default class TodoList extends Component {
@@ -8,37 +7,40 @@ export default class TodoList extends Component {
     super(props);
 
     this.state = {
-      todos: [{ task: "buy food", id: uuid() }]
+      todos: []
     };
+
     this.addTodo = this.addTodo.bind(this);
+    this.delTodo = this.delTodo.bind(this);
   }
 
-  addTodo(todo) {
+  addTodo(newTodo) {
     this.setState({
-      todos: [...this.state.todos, todo]
+      todos: [...this.state.todos, newTodo]
     });
   }
 
   delTodo(id) {
+    // nb: we don't use the callback form cuz there isn't anything we want to do after the state update happens so it doesn't matter
     this.setState({
       todos: this.state.todos.filter(todo => todo.id !== id)
     });
   }
 
   render() {
-    const tasks = this.state.todos.map(todo => (
+    const todos = this.state.todos.map(todo => (
       <Todo
         key={todo.id}
         id={todo.id}
         task={todo.task}
-        delTodo={() => this.delTodo(todo.id)}
+        delTodo={this.delTodo}
       />
     ));
 
     return (
       <div>
         <h1>Todo List</h1>
-        {tasks}
+        <ul>{todos}</ul>
         <NewTodoForm addTodo={this.addTodo} />
       </div>
     );

@@ -8,11 +8,13 @@ export default class NewTodoForm extends Component {
     this.state = {
       task: ""
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
+    // add id to new todo; add new todo, and then clear form
     e.preventDefault();
     const newTodo = { ...this.state, id: uuid() };
     this.props.addTodo(newTodo);
