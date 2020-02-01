@@ -18,9 +18,10 @@ class Die extends Component {
     this.props.handleClick(this.props.idx);
   }
   render() {
-    const { numWords, val, locked, disabled } = this.props;
+    const { numWords, val, locked, disabled, rolling } = this.props;
     let classes = `Die fas fa-5x fa-dice-${numWords[val - 1]} `;
-    if (locked) classes += "Die-locked";
+    if (locked) classes += "Die-locked ";
+    if (rolling) classes += "Die-rolling";
     return (
       <i className={classes} onClick={this.handleClick} disabled={disabled} />
     );
