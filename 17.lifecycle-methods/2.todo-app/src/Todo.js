@@ -39,10 +39,14 @@ export default class Todo extends Component {
     this.props.toggleTodo(this.props.id);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log("todo component did update");
-    console.log(prevProps.task);
-    console.log(this.props.task);
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log("todo component did update");
+  //   console.log(prevProps.task);
+  //   console.log(this.props.task);
+  // }
+
+  componentWillUnmount() {
+    console.log("in component will unmount");
   }
 
   render() {

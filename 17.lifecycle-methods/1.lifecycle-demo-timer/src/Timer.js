@@ -16,6 +16,11 @@ export default class Timer extends Component {
       this.setState({ time: new Date() });
     }, 1000);
   }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
   render() {
     console.log("in render");
     return <h1>{this.state.time.getSeconds()}</h1>;
