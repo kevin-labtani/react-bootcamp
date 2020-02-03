@@ -1,60 +1,57 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Card from "./Card";
+const API_URL = "http://deckofcardsapi.com/api/deck/";
 
 export default class Deck extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      deckId: "",
-      isLoaded: false,
-      remaining: "",
-      newCardImg: "",
-      newCardCode: ""
+      deck: null,
+      drawnCards: []
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.getCard = this.getCard.bind(this);
   }
 
-  componentDidMount() {
-    axios.get("http://deckofcardsapi.com/api/deck/new/shuffle/").then(res => {
-      this.setState({
-        isLoaded: true,
-        deckId: res.data.deck_id,
-        remaining: res.data.remaining
-      });
-    });
+  async componentDidMount() {
+    let deck = await axios.get(API_URL + "new/shuffle/");
+    this.setState({ deck: deck.data });
   }
 
-  handleClick() {
-    axios
-      .get(`http://deckofcardsapi.com/api/deck/${this.state.deckId}/draw/`)
-      .then(res => {
-        console.log(res);
-        this.setState({
-          newCardImg: res.data.cards[0].image,
-          newCardCode: res.data.cards[0].code,
-          remaining: res.data.remaining
-        });
-      });
+  async getCard() {
+    let deck_id = this.state.deck.deck_id;
+    try {
+      let cardRes = await axios.get(`${API_URL}${deck_id}/draw/`);
+      if (!cardRes.data.success) {
+        // check for success instead of remaining, will catch more errors
+        throw new Error("No cards remaining");
+      }
+      let newCard = cardRes.data.cards[0];
+      this.setState(st => ({
+        drawnCards: [
+          ...st.drawnCards,
+          {
+            id: newCard.code,
+            image: newCard.image,
+            name: `${newCard.value} of ${newCard.suit}`
+          }
+        ]
+      }));
+    } catch (e) {
+      alert(e);
+    }
   }
 
   render() {
+    const cards = this.state.drawnCards.map(c => (
+      <Card key={c.id} image={c.image} name={c.name} />
+    ));
+
     return (
       <div>
-        {this.state.isLoaded ? (
-          <div>
-            <button
-              onClick={this.handleClick}
-              disabled={this.state.remaining <= 0}
-            >
-              Draw A Card!
-            </button>
-            <Card image={this.state.newCardImg} code={this.state.newCardCode} />
-          </div>
-        ) : (
-          <div></div>
-        )}
+        <button onClick={this.getCard}>Draw A Card!</button>
+        {cards}
       </div>
     );
   }
