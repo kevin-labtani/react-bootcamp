@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       {/* <Timer /> */}
-      {/* <ZenQuote /> */}
+      <ZenQuote />
       <GithubUserInfo username="kevin-labtani" />
       <GithubUserInfo username="gaearon" />
       <GithubUserInfo username="sophiebits" />
