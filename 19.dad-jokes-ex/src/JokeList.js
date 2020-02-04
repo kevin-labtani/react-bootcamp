@@ -24,6 +24,7 @@ class JokeList extends Component {
   async getJokes() {
     try {
       let jokes = [];
+      // while loop so it will keep looking for new jokes untill we hit 10, in case we find duplicates; wouldn't do that with a for loop
       while (jokes.length < this.props.numJokesToGet) {
         let res = await axios.get("https://icanhazdadjoke.com/", {
           headers: { Accept: "application/json" }
@@ -56,11 +57,13 @@ class JokeList extends Component {
           j.id === id ? { ...j, votes: j.votes + delta } : j
         )
       }),
+      // pass it in setstate to make sure it's executed after state is set
       () =>
         window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
     );
   }
   handleClick() {
+    // making sure getjokes get called after setting loading to true, so we pass it in setstate
     this.setState({ loading: true }, this.getJokes);
   }
   render() {
@@ -79,7 +82,7 @@ class JokeList extends Component {
           <h1 className="JokeList-title">
             <span>Dad</span> Jokes
           </h1>
-          <img src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg" />
+          <img src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg" alt=""/>
           <button className="JokeList-getmore" onClick={this.handleClick}>
             Fetch Jokes
           </button>
