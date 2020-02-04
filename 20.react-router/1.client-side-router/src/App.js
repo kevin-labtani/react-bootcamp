@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import About from "./About";
 import Dog from "./Dog";
@@ -10,9 +10,28 @@ export default class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/dog" component={Dog} />
-          <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
+          <nav className="App-nav">
+            <NavLink exact activeClassName="active-link" to="/">
+              About
+            </NavLink>
+            <NavLink exact activeClassName="active-link" to="/dog">
+              Dog
+            </NavLink>
+            <NavLink exact activeClassName="active-link" to="/dog/c">
+              Dog comp
+            </NavLink>
+            <NavLink exact activeClassName="active-link" to="/dog/r">
+              Dog render
+            </NavLink>
+            <NavLink exact activeClassName="active-link" to="/contact">
+              Contact
+            </NavLink>
+          </nav>
+          <Route exact path="/" component={About} />
+          <Route exact path="/dog/c" component={() => <Dog name="Muffins" />} />
+          <Route exact path="/dog/r" render={() => <Dog name="Biscuits" />} />
+          <Route exact path="/dog" render={() => <Dog name="Biscuits" />} />
+          <Route exact path="/contact" component={Contact} />
         </div>
       </Router>
     );
