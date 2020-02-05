@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Food from "./Food";
 import Meal from "./Meal";
+import Navbar from "./Navbar";
 import FoodSearch from "./FoodSearch";
 
 export default class App extends Component {
@@ -10,6 +11,7 @@ export default class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Navbar />
           <Switch>
             <Route
               exact
