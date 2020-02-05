@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Food from "./Food";
 import Meal from "./Meal";
@@ -9,18 +9,22 @@ export default class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route
-            exact
-            path="/food/:name"
-            // component={Food}
-            render={routeProps => <Food {...routeProps} />}
-          />
+          <Switch>
+            <Route
+              exact
+              path="/food/:name"
+              // component={Food}
+              render={routeProps => <Food {...routeProps} />}
+            />
 
-          <Route
-            exact
-            path="/food/:foodName/drink/:drinkName"
-            component={Meal}
-          />
+            <Route
+              exact
+              path="/food/:foodName/drink/:drinkName"
+              component={Meal}
+            />
+            <Route exact path="/" render={() => <h1>Home Page</h1>} />
+            <Route render={() => <h1>404 error</h1>} />
+          </Switch>
         </div>
       </Router>
     );
