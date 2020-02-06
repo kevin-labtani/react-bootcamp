@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import DogList from "./DogList.js";
+import DogList from "./DogList";
 import DogDetails from "./DogDetails";
+import Navbar from "./Navbar";
 import whiskey from "./images/whiskey.jpg";
 import hazel from "./images/hazel.jpg";
 import tubby from "./images/tubby.jpg";
@@ -54,6 +55,7 @@ export default class App extends Component {
     };
     return (
       <Router>
+        <Navbar dogs={this.props.dogs} />
         <Switch>
           <Route
             exact
