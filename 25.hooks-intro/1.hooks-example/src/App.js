@@ -6,17 +6,19 @@ import Toggler from "./Toggler";
 import SimpleFormClass from "./SimpleFormClass";
 import SimpleFormHooks from "./SimpleFormHooks";
 import SimpleFormInputHooks from "./SimpleFormInputHook";
+import Clicker from "./Clicker";
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <CounterClass />
+        {/* <CounterClass />
         <CounterHooks />
         <Toggler />
         <SimpleFormClass />
         <SimpleFormHooks />
-        <SimpleFormInputHooks />
+        <SimpleFormInputHooks /> */}
+        <Clicker />
       </div>
     );
   }
