@@ -5,6 +5,7 @@ import CounterHooks from "./CounterHooks";
 import Toggler from "./Toggler";
 import SimpleFormClass from "./SimpleFormClass";
 import SimpleFormHooks from "./SimpleFormHooks";
+import SimpleFormInputHooks from "./SimpleFormInputHook";
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
         <Toggler />
         <SimpleFormClass />
         <SimpleFormHooks />
+        <SimpleFormInputHooks />
       </div>
     );
   }
