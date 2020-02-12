@@ -7,6 +7,7 @@ import SimpleFormClass from "./SimpleFormClass";
 import SimpleFormHooks from "./SimpleFormHooks";
 import SimpleFormInputHooks from "./SimpleFormInputHook";
 import Clicker from "./Clicker";
+import SWMovies from "./SWMovies";
 
 class App extends React.Component {
   render() {
@@ -17,8 +18,9 @@ class App extends React.Component {
         <Toggler />
         <SimpleFormClass />
         <SimpleFormHooks />
-        <SimpleFormInputHooks /> */}
-        <Clicker />
+        <SimpleFormInputHooks />
+        <Clicker /> */}
+        <SWMovies />
       </div>
     );
   }
