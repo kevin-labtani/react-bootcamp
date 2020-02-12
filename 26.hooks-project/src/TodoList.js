@@ -8,7 +8,7 @@ export default function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
   return (
     <Paper>
       <List>
-        {todos.map(todo => (
+        {todos.map((todo, i) => (
           <>
             <Todo
               key={todo.id}
@@ -19,7 +19,8 @@ export default function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
               toggleTodo={toggleTodo}
               editTodo={editTodo}
             />
-            <Divider />
+            {/* no divider after last todo */}
+            {i < todos.length - 1 ? <Divider /> : ""}
           </>
         ))}
       </List>
