@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -11,7 +11,7 @@ export default function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
       <Paper>
         <List>
           {todos.map((todo, i) => (
-            <>
+            <Fragment key={i}>
               <Todo
                 key={todo.id}
                 {...todo}
@@ -21,7 +21,7 @@ export default function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
               />
               {/* no divider after last todo */}
               {i < todos.length - 1 ? <Divider /> : ""}
-            </>
+            </Fragment>
           ))}
         </List>
       </Paper>
