@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -10,13 +10,22 @@ import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 
 export default function TodoApp() {
-  const initialTodos = [
-    { id: 1, task: "buy cat food", completed: false },
-    { id: 2, task: "clean house", completed: true },
-    { id: 3, task: "renew train pass", completed: false }
-  ];
+  // get todos from localstorage
+  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
+  // initial todos for testing
+  // const initialTodos = [
+  //   { id: 1, task: "buy cat food", completed: false },
+  //   { id: 2, task: "clean house", completed: true },
+  //   { id: 3, task: "renew train pass", completed: false }
+  // ];
 
   const [todos, setTodos] = useState(initialTodos);
+
+  // sync todos with localstorage
+  // only todos changing would trigger a rerender, so not actually needed to pass them as 2nd arg here
+  useEffect(() => {
+    window.localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   // add a new todo
   const addTodo = newTodoText => {
