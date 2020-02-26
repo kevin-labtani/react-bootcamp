@@ -26,11 +26,3 @@ export class LanguageProvider extends Component {
     );
   }
 }
-
-// making our own HOC to help consume multiple contexts in 1 component as a cleaner way than just wrapping contextsconsumers within contextconsumers
-// we can only ever have one contexttype
-export const withLanguageContext = Component => props => (
-  <LanguageContext.Consumer>
-    {value => <Component languageContext={value} {...props} />}
-  </LanguageContext.Consumer>
-);
