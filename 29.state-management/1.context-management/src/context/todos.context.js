@@ -8,12 +8,17 @@ const defaultTodos = [
 ];
 
 export const TodosContext = createContext();
+export const DispatchContext = createContext();
+// split between 2 provider for performance reason, otherwise everything rerenders when we eg: toggle a single todo
+// then bellow we pass direclty the todos and dispatch rather than destricturing it {todos} vs {{todos}} as there's a signel object now and if de destrucutred it'd make a new object everytime
 
 export function TodosProvider(props) {
   const [todos, dispatch] = useReducer(todoReducer, defaultTodos);
   return (
-    <TodosContext.Provider value={{ todos, dispatch }}>
-      {props.children}
+    <TodosContext.Provider value={todos}>
+      <DispatchContext.Provider value={dispatch}>
+        {props.children}
+      </DispatchContext.Provider>
     </TodosContext.Provider>
   );
 }
