@@ -1,5 +1,6 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext } from "react";
 import todoReducer from "../reducers/todo.reducer.js";
+import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
 
 const defaultTodos = [
   { id: 1, task: "Mow the lawn using goats", completed: false },
@@ -12,7 +13,12 @@ export const DispatchContext = createContext();
 // then bellow we pass direclty the todos and dispatch rather than destricturing it {todos} vs {{todos}} as there's a signel object now and if de destrucutred it'd make a new object everytime
 
 export function TodosProvider(props) {
-  const [todos, dispatch] = useReducer(todoReducer, defaultTodos);
+  const [todos, dispatch] = useLocalStorageReducer(
+    "todos",
+    defaultTodos,
+    todoReducer
+  );
+
   return (
     <TodosContext.Provider value={todos}>
       <DispatchContext.Provider value={dispatch}>
