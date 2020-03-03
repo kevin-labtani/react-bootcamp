@@ -4,7 +4,7 @@ const Contact = () => {
   console.log("running inside contact component");
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <h1>This is the Contact Page</h1>
       <p>Do not contact me ever!</p>
     </div>

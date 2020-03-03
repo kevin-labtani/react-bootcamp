@@ -5,7 +5,7 @@ const Index = () => {
   console.log("running inside index component"); //we see this message in the server console and in our browser console
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       {/* link has rendering happening on client side only */}
       {/* can put what we want inside link as long as it can take an oClick method (auto added by next) */}
       <Link href="/about">
