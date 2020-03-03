@@ -8,7 +8,10 @@ const Index = ({ posts }) => {
       <ul>
         {posts.map(p => (
           <li key={p.id}>
-            <Link href={`/post?id=${p.id}`}><a>{p.title}</a></Link>
+            {/* as prop will only change route on client side, client won't actually be able to navigate tot his route by typing it in the browser */}
+            <Link href={`/post?id=${p.id}`} as={`/p/${p.id}`}>
+              <a>{p.title}</a>
+            </Link>
           </li>
         ))}
       </ul>
