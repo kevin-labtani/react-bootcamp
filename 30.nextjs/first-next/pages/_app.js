@@ -2,20 +2,20 @@
 import Navbar from "../components/navbar";
 
 function MyApp({ Component, pageProps }) {
-  console.log("I'm from the custom app component");
+  // console.log("I'm from the custom app component");
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <Component {...pageProps} />
     </>
-      );
-  }
-  
-  // Only uncomment this method if you have blocking data requirements for
-  // every single page in your application. This disables the ability to
-  // perform automatic static optimization, causing every page in your app to
-  // be server-side rendered.
-  //
+  );
+}
+
+// Only uncomment this method if you have blocking data requirements for
+// every single page in your application. This disables the ability to
+// perform automatic static optimization, causing every page in your app to
+// be server-side rendered.
+//
 // MyApp.getInitialProps = async (appContext) => {
 //   // calls page's `getInitialProps` and fills `appProps.pageProps`
 //   const appProps = await App.getInitialProps(appContext);
